@@ -9,7 +9,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
-import sims.softwareii.softwareii.JDBC;
+import sims.softwareii.softwareii.utils.DatabaseConnectionManager;
 
 import java.io.IOException;
 import java.net.URL;
@@ -105,7 +105,7 @@ public class SceneController implements Initializable {
     @FXML
     public static void exitAllScenes() {
 
-        JDBC.closeConnection();
+        DatabaseConnectionManager.closeConnection();
         Platform.exit();
     }
 

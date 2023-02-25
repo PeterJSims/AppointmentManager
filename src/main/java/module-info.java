@@ -6,4 +6,6 @@ module sims.softwareii.softwareii {
 
     opens sims.softwareii.softwareii to javafx.fxml;
     exports sims.softwareii.softwareii;
+    exports sims.softwareii.softwareii.utils;
+    opens sims.softwareii.softwareii.utils to javafx.fxml;
 }
