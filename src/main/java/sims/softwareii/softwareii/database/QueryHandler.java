@@ -1,11 +1,11 @@
-package sims.softwareii.softwareii.utils;
+package sims.softwareii.softwareii.database;
 
 
+import java.sql.Connection;
 import java.sql.Statement;
 
 import java.sql.ResultSet;
 
-import static sims.softwareii.softwareii.utils.DatabaseConnectionManager.connection;
 
 /**
  * Starting structure taken from Carolyn Sher-Decusatis's lectures
@@ -14,6 +14,7 @@ public class QueryHandler {
     private static String query;
     private static Statement statement;
     private static ResultSet resultSet;
+    private static Connection connection = JDBC.connection;
 
     public static void makeQuery(String q) {
         query = q;
