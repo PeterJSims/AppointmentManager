@@ -11,6 +11,11 @@ public class Contact {
         this.email = email;
     }
 
+    // NOTE:  No argument constructor in case needed
+    public Contact(){
+
+    }
+
     public int getId() {
         return id;
     }
