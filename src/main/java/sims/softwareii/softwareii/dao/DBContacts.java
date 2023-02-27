@@ -1,10 +1,9 @@
-package sims.softwareii.softwareii.databasemodels;
+package sims.softwareii.softwareii.dao;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import sims.softwareii.softwareii.database.JDBC;
 import sims.softwareii.softwareii.model.Contact;
-import sims.softwareii.softwareii.model.Country;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

@@ -1,4 +1,4 @@
-package sims.softwareii.softwareii.databasemodels;
+package sims.softwareii.softwareii.dao;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

@@ -4,6 +4,8 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import sims.softwareii.softwareii.dao.DBContacts;
+import sims.softwareii.softwareii.dao.DBUsers;
 import sims.softwareii.softwareii.database.JDBC;
 
 import java.io.IOException;
@@ -20,7 +22,7 @@ public class Main extends Application {
 
     public static void main(String[] args) {
         JDBC.startConnection();
-
+        DBContacts.getContacts();
         JDBC.closeConnection();
 
         //        launch();
