@@ -4,7 +4,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import sims.softwareii.softwareii.database.JDBC;
 import sims.softwareii.softwareii.model.Appointment;
-import sims.softwareii.softwareii.model.Customer;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -14,7 +13,6 @@ import java.time.LocalDateTime;
 
 public class DBAppointments {
 
-    // PAIN POINT WITH DATETIME?
     public void createAppointment(String title, String description, String location,
                                   String type, LocalDateTime start, LocalDateTime end, int customerID, int userID, int contactID) {
         try {

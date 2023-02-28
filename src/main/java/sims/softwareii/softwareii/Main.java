@@ -4,8 +4,6 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import sims.softwareii.softwareii.dao.DBContacts;
-import sims.softwareii.softwareii.dao.DBUsers;
 import sims.softwareii.softwareii.database.JDBC;
 
 import java.io.IOException;
@@ -22,25 +20,10 @@ public class Main extends Application {
 
     public static void main(String[] args) {
         JDBC.startConnection();
-        DBContacts.getContacts();
+
+
         JDBC.closeConnection();
 
         //        launch();
     }
-
-//    // Testing queries
-//    public static void main(String[] args) throws SQLException {
-//        DatabaseConnectionManager.getConnection();
-//
-//        QueryHandler.makeQuery("SELECT * FROM customers");
-//        ResultSet results = QueryHandler.getResult();
-//        while(results.next()){
-//            String customerName = results.getString("customer_name");
-//            System.out.println(customerName);
-//        }
-//
-//        DatabaseConnectionManager.closeConnection();
-//
-//        //        launch();
-//    }
 }
