@@ -8,6 +8,7 @@ import sims.softwareii.softwareii.model.Customer;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 
 /**
@@ -62,20 +63,75 @@ public class DBCustomers {
             PreparedStatement ps = JDBC.getConnection().prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
 
-            while (rs.next()) {
-                int customerID = rs.getInt("Customer_ID");
-                String customerName = rs.getString("Customer_Name");
-                String customerAddress = rs.getString("Address");
-                String customerPostalCode = rs.getString("Postal_Code");
-                String customerPhone = rs.getString("Phone");
-                int divisionID = rs.getInt("Division_ID");
-
-                customerList.add(new Customer(customerID, customerName, customerAddress, customerPostalCode, customerPhone, divisionID));
-            }
+            iterateQueryResults(customerList, rs);
         } catch (SQLException throwable) {
             throwable.printStackTrace();
         }
         return customerList;
+    }
+
+    /**
+     * Returns an ObservableList-type list of Customers queried from the database based upon a provided name. Holds all customer IDs, names, addresses, postal codes, phone numbers, and division IDs.
+     *
+     * @return An ObservableList-type list of Customer objects with a matching name field.
+     */
+    public static ObservableList<Customer> getCustomerByName(String name) {
+        ObservableList<Customer> customerList = FXCollections.observableArrayList();
+
+        try {
+            String sql = "SELECT * FROM customers WHERE LOWER(Customer_Name) LIKE CONCAT(LOWER(?), '%')";
+
+            PreparedStatement ps = JDBC.getConnection().prepareStatement(sql);
+            ps.setString(1, name);
+            System.out.println(ps);
+            ResultSet rs = ps.executeQuery();
+
+            iterateQueryResults(customerList, rs);
+        } catch (SQLException throwable) {
+            throwable.printStackTrace();
+        }
+        return customerList;
+    }
+
+    /**
+     * Returns an ObservableList-type list of Customers queried from the database based upon a provided ID. Holds all customer IDs, names, addresses, postal codes, phone numbers, and division IDs.
+     *
+     * @return An ObservableList-type list of Customer objects with a matching ID field.
+     */
+    public static ObservableList<Customer> getCustomerByID(int id) {
+        ObservableList<Customer> customerList = FXCollections.observableArrayList();
+
+        try {
+            String sql = "SELECT * FROM customers WHERE Customer_ID=?";
+
+            PreparedStatement ps = JDBC.getConnection().prepareStatement(sql);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            iterateQueryResults(customerList, rs);
+        } catch (SQLException throwable) {
+            throwable.printStackTrace();
+        }
+        return customerList;
+    }
+
+    /**
+     * Iterates through a provided ResultSet and sets all items within to new additions in the provided customerList. Operates via the mutable nature of the ObservableList.
+     *
+     * @param customerList The ObservableList object to contain all customers returned from the database query.
+     * @param rs           The result of the database query run against the Customers table.
+     * @throws SQLException Providing database access error information.
+     */
+    private static void iterateQueryResults(ObservableList<Customer> customerList, ResultSet rs) throws SQLException {
+        while (rs.next()) {
+            int customerID = rs.getInt("Customer_ID");
+            String customerName = rs.getString("Customer_Name");
+            String customerAddress = rs.getString("Address");
+            String customerPostalCode = rs.getString("Postal_Code");
+            String customerPhone = rs.getString("Phone");
+            int divisionID = rs.getInt("Division_ID");
+
+            customerList.add(new Customer(customerID, customerName, customerAddress, customerPostalCode, customerPhone, divisionID));
+        }
     }
 
     /**
@@ -136,5 +192,4 @@ public class DBCustomers {
             return false;
         }
     }
-
 }

@@ -4,6 +4,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import sims.softwareii.softwareii.database.JDBC;
 import sims.softwareii.softwareii.model.Appointment;
+import sims.softwareii.softwareii.model.Customer;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -59,7 +60,7 @@ public class DBAppointments {
     }
 
     /**
-     * Returns an ObservableList-type list of Appointments queried from the database. Holds all appointment IDs, titles, descriptions, location, and start and end times, as well as corresponding user IDs, customer IDs, and contact IDs for each row of data.
+     * Returns an ObservableList-type list of appointments queried from the database. Holds all appointment IDs, titles, descriptions, location, and start and end times, as well as corresponding user IDs, customer IDs, and contact IDs for each row of data.
      *
      * @return An ObservableList-type list of Appointment objects.
      */
@@ -72,24 +73,78 @@ public class DBAppointments {
             PreparedStatement ps = JDBC.getConnection().prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
 
-            while (rs.next()) {
-                int appointmentID = rs.getInt("Appointment_ID");
-                String title = rs.getString("Title");
-                String description = rs.getString("Description");
-                String location = rs.getString("Location");
-                String type = rs.getString("Type");
-                LocalDateTime start = rs.getTimestamp("Start").toLocalDateTime();
-                LocalDateTime end = rs.getTimestamp("End").toLocalDateTime();
-                int customerID = rs.getInt("Customer_ID");
-                int userID = rs.getInt("User_ID");
-                int contactID = rs.getInt("Contact_ID");
-
-                appointmentList.add(new Appointment(appointmentID, title, description, location, type, start, end, customerID, userID, contactID));
-            }
+            iterateQueryResults(appointmentList, rs);
         } catch (SQLException throwable) {
             throwable.printStackTrace();
         }
         return appointmentList;
+    }
+    /**
+     * Returns an ObservableList-type list of appointments queried from the database based upon a provided title.
+     *
+     * @return An ObservableList-type list of Appointment objects with a matching title field.
+     */
+    public static ObservableList<Appointment> getAppointmentByTitle(String title) {
+        ObservableList<Appointment> appointmentsList = FXCollections.observableArrayList();
+
+        try {
+            String sql = "SELECT * FROM appointments WHERE LOWER(Title) LIKE CONCAT(LOWER(?), '%')";
+
+            PreparedStatement ps = JDBC.getConnection().prepareStatement(sql);
+            ps.setString(1, title);
+            System.out.println(ps);
+            ResultSet rs = ps.executeQuery();
+
+            iterateQueryResults(appointmentsList, rs);
+        } catch (SQLException throwable) {
+            throwable.printStackTrace();
+        }
+        return appointmentsList;
+    }
+
+    /**
+     * Returns an ObservableList-type list of Appointments queried from the database based upon a provided ID.
+     *
+     * @return An ObservableList-type list of Customer objects with a matching ID field.
+     */
+    public static ObservableList<Appointment> getAppointmentByID(int id) {
+        ObservableList<Appointment> appointmentList = FXCollections.observableArrayList();
+
+        try {
+            String sql = "SELECT * FROM appointments WHERE Appointment_ID=?";
+
+            PreparedStatement ps = JDBC.getConnection().prepareStatement(sql);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            iterateQueryResults(appointmentList, rs);
+        } catch (SQLException throwable) {
+            throwable.printStackTrace();
+        }
+        return appointmentList;
+    }
+
+    /**
+     * Iterates through a provided ResultSet and sets all items within to new additions in the provided appointmentsList. Operates via the mutable nature of the ObservableList.
+     *
+     * @param appointmentList The ObservableList object to contain all appointments returned from the database query.
+     * @param rs              The result of the database query run against the Appointments table.
+     * @throws SQLException Providing database access error information.
+     */
+    private static void iterateQueryResults(ObservableList<Appointment> appointmentList, ResultSet rs) throws SQLException {
+        while (rs.next()) {
+            int appointmentID = rs.getInt("Appointment_ID");
+            String title = rs.getString("Title");
+            String description = rs.getString("Description");
+            String location = rs.getString("Location");
+            String type = rs.getString("Type");
+            LocalDateTime start = rs.getTimestamp("Start").toLocalDateTime();
+            LocalDateTime end = rs.getTimestamp("End").toLocalDateTime();
+            int customerID = rs.getInt("Customer_ID");
+            int userID = rs.getInt("User_ID");
+            int contactID = rs.getInt("Contact_ID");
+
+            appointmentList.add(new Appointment(appointmentID, title, description, location, type, start, end, customerID, userID, contactID));
+        }
     }
 
     /**
