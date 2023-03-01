@@ -8,26 +8,39 @@ import sims.softwareii.softwareii.database.JDBC;
 
 import java.io.IOException;
 import java.util.Locale;
-import java.util.ResourceBundle;
 
 public class Main extends Application {
+
+    /**
+     * A necessary method for classes extending JavaFX's Application abstract class. Provides initializing of the view's components.
+     *
+     * @param stage stage passed automatically into method via main method's Application.load().
+     * @throws IOException Triggered upon error of input/output.
+     */
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("hello-view.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("login.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
-        stage.setTitle("Hello!");
+        stage.setTitle("CustPoint - Customer/Appointment Management");
         stage.setScene(scene);
         stage.show();
     }
 
+
+
+    /**
+     * Launch the application via the automatically executed main() method. This application's method will open the database connection, process all screen interactions, and then close the database once the screens are exited.
+     *
+     * @param args command-line arguments passed into the application.
+     */
     public static void main(String[] args) {
         JDBC.startConnection();
-        Locale.setDefault(new Locale("fr"));
-        ResourceBundle rb = ResourceBundle.getBundle("bundle/lang", Locale.getDefault());
-        System.out.println(rb.getString("error"));
 
+//        Locale.setDefault(new Locale("fr"));
+
+        launch();
         JDBC.closeConnection();
 
-        //        launch();
+
     }
 }

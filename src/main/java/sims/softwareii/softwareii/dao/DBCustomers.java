@@ -74,13 +74,25 @@ public class DBCustomers {
         }
     }
 
+    /**
+     * Clear the customer's attached appointments in the Appointments table, then remove the customer from the Customer table, both of which done via referencing the Customer_ID field.
+     *
+     * @param customerID the ID of the customer to be removed from the Customer table, as well as the field to identify the customer's appointments to be removed.
+     */
     public static void deleteUser(int customerID) {
         try {
-            String sql = "DELETE from Customers WHERE Customer_ID = ?";
+            String sql = "DELETE FROM Appointments WHERE Customer_ID = ? ";
             PreparedStatement statement = JDBC.getConnection().prepareStatement(sql);
-
             statement.setInt(1, customerID);
             statement.execute();
+            System.out.println("Appointments for Customer with ID " + customerID + " deleted.");
+
+
+            String sql2 = "DELETE from Customers WHERE Customer_ID = ?";
+            PreparedStatement statement2 = JDBC.getConnection().prepareStatement(sql2);
+
+            statement2.setInt(1, customerID);
+            statement2.execute();
             System.out.println("Customer with ID " + customerID + " deleted.");
         } catch (SQLException e) {
             e.printStackTrace();

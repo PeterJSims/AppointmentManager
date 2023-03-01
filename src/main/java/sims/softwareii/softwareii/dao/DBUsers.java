@@ -12,7 +12,7 @@ import java.sql.SQLException;
 public class DBUsers {
 
 
-    public boolean validateUser(String userName, String password) {
+    public static boolean validateUser(String userName, String password) {
         try {
             String sql = "SELECT * FROM Users WHERE User_Name = ? AND Password = ? ";
 
@@ -37,7 +37,7 @@ public class DBUsers {
 
     }
 
-    public void createUser(String userName, String password) {
+    public static void createUser(String userName, String password) {
         try {
             String sql = "INSERT INTO Users (User_Name, Password) VALUES (?, ?)";
 
@@ -101,4 +101,10 @@ public class DBUsers {
         }
     }
 
+    public static void main(String[] args) {
+        JDBC.startConnection();
+        System.out.println(DBUsers.validateUser("test", "test"));
+        System.out.println(DBUsers.validateUser("asdf", "xcv"));
+        JDBC.closeConnection();
+    }
 }
