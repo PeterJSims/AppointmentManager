@@ -4,17 +4,33 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import sims.softwareii.softwareii.database.JDBC;
 import sims.softwareii.softwareii.model.Customer;
-import sims.softwareii.softwareii.model.User;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+
+/**
+ * A class holding static methods for communication with the Customers table in the database linked in the JDBC class.
+ * Contains all CRUD actions.
+ *
+ * @author Peter Sims
+ */
 public class DBCustomers {
 
-    public void createCustomer(String name, String customerAddress, String customerPostalCode, String customerPhone, int divisionID) {
+    /**
+     * Inserts a new user into the Customers table with the provided fields.
+     *
+     * @param name               The new customer's provided name.
+     * @param customerAddress    The new customer's given address.
+     * @param customerPostalCode The new customer's postal code.
+     * @param customerPhone      The new customer's primary phone number.
+     * @param divisionID         The ID of the division where the customer is located.
+     * @return A boolean representing a successful insertion into the database.
+     */
+    public static boolean createCustomer(String name, String customerAddress, String customerPostalCode, String customerPhone, int divisionID) {
         try {
-            String sql = "INSERT INTO Customers (Customer_Name, Address, Postal_Code, Phone, Division_ID) VALUES (?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO customers (Customer_Name, Address, Postal_Code, Phone, Division_ID) VALUES (?, ?, ?, ?, ?)";
 
             PreparedStatement preparedStatement = JDBC.getConnection().prepareStatement(sql);
 
@@ -25,16 +41,23 @@ public class DBCustomers {
             preparedStatement.setInt(5, divisionID);
 
             preparedStatement.execute();
+            return true;
         } catch (SQLException e) {
             e.printStackTrace();
+            return false;
         }
     }
 
+    /**
+     * Returns an ObservableList-type list of Customers queried from the database. Holds all customer IDs, names, addresses, postal codes, phone numbers, and division IDs.
+     *
+     * @return An ObservableList-type list of Customer objects.
+     */
     public static ObservableList<Customer> getCustomers() {
         ObservableList<Customer> customerList = FXCollections.observableArrayList();
 
         try {
-            String sql = "SELECT * FROM Customers";
+            String sql = "SELECT * FROM customers";
 
             PreparedStatement ps = JDBC.getConnection().prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
@@ -55,9 +78,20 @@ public class DBCustomers {
         return customerList;
     }
 
-    public static void updateUser(int customerID, String name, String customerAddress, String customerPostalCode, String customerPhone, int divisionID) {
+    /**
+     * Allows a user to change a customer's username and/or password.
+     *
+     * @param customerID         The unique customer ID tied to the particular customer having their information updated.
+     * @param name               The name to be tied to the existing customer ID.
+     * @param customerAddress    The address to be tied to the existing customer ID.
+     * @param customerPostalCode The postal code to be tied to the existing customer ID.
+     * @param customerPhone      The phone number to be tied to the existing customer ID.
+     * @param divisionID         The regional division ID to be tied to the existing customer ID.
+     * @return A boolean representing a successful update of the database.
+     */
+    public static boolean updateUser(int customerID, String name, String customerAddress, String customerPostalCode, String customerPhone, int divisionID) {
         try {
-            String sql = "UPDATE Customers SET Customer_Name = ?, Address = ?, Postal_Code= ?, Phone = ?, Division_ID = ? WHERE Customer_ID = ? ";
+            String sql = "UPDATE customers SET Customer_Name = ?, Address = ?, Postal_Code= ?, Phone = ?, Division_ID = ? WHERE Customer_ID = ? ";
 
             PreparedStatement ps = JDBC.getConnection().prepareStatement(sql);
             ps.setString(1, name);
@@ -68,9 +102,10 @@ public class DBCustomers {
             ps.setInt(6, customerID);
 
             ps.execute();
-
+            return true;
         } catch (SQLException e) {
             e.printStackTrace();
+            return true;
         }
     }
 
@@ -78,24 +113,27 @@ public class DBCustomers {
      * Clear the customer's attached appointments in the Appointments table, then remove the customer from the Customer table, both of which done via referencing the Customer_ID field.
      *
      * @param customerID the ID of the customer to be removed from the Customer table, as well as the field to identify the customer's appointments to be removed.
+     * @return A boolean representing a successful deletion of a user from the database (and their corresponding appointments).
      */
-    public static void deleteUser(int customerID) {
+    public static boolean deleteUser(int customerID) {
         try {
-            String sql = "DELETE FROM Appointments WHERE Customer_ID = ? ";
+            String sql = "DELETE FROM appointments WHERE Customer_ID = ? ";
             PreparedStatement statement = JDBC.getConnection().prepareStatement(sql);
             statement.setInt(1, customerID);
             statement.execute();
             System.out.println("Appointments for Customer with ID " + customerID + " deleted.");
 
 
-            String sql2 = "DELETE from Customers WHERE Customer_ID = ?";
+            String sql2 = "DELETE from customers WHERE Customer_ID = ?";
             PreparedStatement statement2 = JDBC.getConnection().prepareStatement(sql2);
 
             statement2.setInt(1, customerID);
             statement2.execute();
             System.out.println("Customer with ID " + customerID + " deleted.");
+            return true;
         } catch (SQLException e) {
             e.printStackTrace();
+            return false;
         }
     }
 

@@ -9,6 +9,9 @@ import sims.softwareii.softwareii.database.JDBC;
 import java.io.IOException;
 import java.util.Locale;
 
+/**
+ * The main entrypoint into the CustPoint customer/appointment scheduling application.
+ */
 public class Main extends Application {
 
     /**
@@ -25,7 +28,6 @@ public class Main extends Application {
         stage.setScene(scene);
         stage.show();
     }
-
 
 
     /**

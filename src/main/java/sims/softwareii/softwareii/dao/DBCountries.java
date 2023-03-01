@@ -10,8 +10,18 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 
+/**
+ * A class holding static methods for communication with the Countries table in the database linked in the JDBC class.
+ * Contains a method for retrieving all countries.
+ *
+ * @author Peter Sims
+ */
 public class DBCountries {
-
+    /**
+     * Returns an ObservableList-type list of Country objects queried from the database based on a provided country ID.
+     *
+     * @return An ObservableList-type list of Country objects.
+     */
     public static ObservableList<Country> getCountries() {
         ObservableList<Country> cList = FXCollections.observableArrayList();
 
@@ -32,18 +42,5 @@ public class DBCountries {
         return cList;
     }
 
-    public static void checkDateConversion() {
-        System.out.println("Create Date Test:");
-        String sql = "select Create_Date from countries";
-        try {
-            PreparedStatement ps = JDBC.getConnection().prepareStatement(sql);
-            ResultSet rs = ps.executeQuery();
-            while (rs.next()) {
-                Timestamp ts = rs.getTimestamp("Create_Date");
-                System.out.println("CD: " + ts.toLocalDateTime().toString());
-            }
-        } catch (SQLException throwable) {
-            throwable.printStackTrace();
-        }
-    }
+
 }

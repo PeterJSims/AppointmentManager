@@ -11,12 +11,32 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
+/**
+ * A class holding static methods for communication with the Appointments table in the database linked in the JDBC class.
+ * Contains all CRUD actions.
+ *
+ * @author Peter Sims
+ */
 public class DBAppointments {
 
-    public void createAppointment(String title, String description, String location,
-                                  String type, LocalDateTime start, LocalDateTime end, int customerID, int userID, int contactID) {
+    /**
+     * Inserts a new user into the Customers table with the provided fields.
+     *
+     * @param title       The new appointment's provided title.
+     * @param description A description of the new appointment.
+     * @param location    The location of the new appointment.
+     * @param type        The new appointment's type.
+     * @param start       The starting time and date of the new appointment.
+     * @param end         The ending time and date of the new appointment.
+     * @param customerID  The customer ID tying the new appointment to a Customers table entry.
+     * @param userID      The user ID tying the new appointment to a Users table entry.
+     * @param contactID   The contact ID tying the new appointment to a Contacts table entry.
+     * @return A boolean representing a successful insertion of data into the Appointments table.
+     */
+    public static boolean createAppointment(String title, String description, String location,
+                                            String type, LocalDateTime start, LocalDateTime end, int customerID, int userID, int contactID) {
         try {
-            String sql = "INSERT INTO Appointments (Title, Description, Location, Type, Start, End, Customer_ID, User_ID, Contact_ID) VALUES (?, ?, ?, ?, ? ,? ,? ,? ,? )";
+            String sql = "INSERT INTO appointments (Title, Description, Location, Type, Start, End, Customer_ID, User_ID, Contact_ID) VALUES (?, ?, ?, ?, ? ,? ,? ,? ,? )";
 
             PreparedStatement preparedStatement = JDBC.getConnection().prepareStatement(sql);
 
@@ -31,16 +51,23 @@ public class DBAppointments {
             preparedStatement.setInt(9, contactID);
 
             preparedStatement.execute();
+            return true;
         } catch (SQLException e) {
             e.printStackTrace();
+            return false;
         }
     }
 
+    /**
+     * Returns an ObservableList-type list of Appointments queried from the database. Holds all appointment IDs, titles, descriptions, location, and start and end times, as well as corresponding user IDs, customer IDs, and contact IDs for each row of data.
+     *
+     * @return An ObservableList-type list of Appointment objects.
+     */
     public static ObservableList<Appointment> getCustomers() {
         ObservableList<Appointment> appointmentList = FXCollections.observableArrayList();
 
         try {
-            String sql = "SELECT * FROM Appointments";
+            String sql = "SELECT * FROM appointments";
 
             PreparedStatement ps = JDBC.getConnection().prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
@@ -65,10 +92,25 @@ public class DBAppointments {
         return appointmentList;
     }
 
-    public static void updateUser(int appointmentID, String title, String description, String location,
-                                  String type, LocalDateTime start, LocalDateTime end, int customerID, int userID, int contactID) {
+    /**
+     * Allows a user to change a specific appointment's information.
+     *
+     * @param appointmentID The appointment ID representing the entry in the database which will be updated.
+     * @param title         The title of the updated appointment.
+     * @param description   The description of the updated appointment.
+     * @param location      The location of the updated appointment.
+     * @param type          The updated appointment's type.
+     * @param start         The start date and time of the updated appointment.
+     * @param end           The end date and time of the updated appointment.
+     * @param customerID    The customer ID linking the updated appointment to the Customers table.
+     * @param userID        The user ID linking the updated appointment to the Users table.
+     * @param contactID     The contact ID linking the updated appointment to the Contacts table.
+     * @return A boolean representing the successful update of data.
+     */
+    public static boolean updateAppointment(int appointmentID, String title, String description, String location,
+                                            String type, LocalDateTime start, LocalDateTime end, int customerID, int userID, int contactID) {
         try {
-            String sql = "UPDATE Appointments SET Title = ?, Description = ?, Location= ?, Type = ?, Start = ?, End = ?, Customer_ID = ?, User_ID = ?, Contact_ID = ? WHERE Appointment_ID = ? ";
+            String sql = "UPDATE appointments SET Title = ?, Description = ?, Location= ?, Type = ?, Start = ?, End = ?, Customer_ID = ?, User_ID = ?, Contact_ID = ? WHERE Appointment_ID = ? ";
 
             PreparedStatement preparedStatement = JDBC.getConnection().prepareStatement(sql);
             preparedStatement.setString(1, title);
@@ -82,15 +124,22 @@ public class DBAppointments {
             preparedStatement.setInt(9, contactID);
             preparedStatement.setInt(10, appointmentID);
             preparedStatement.execute();
-
+            return true;
         } catch (SQLException e) {
             e.printStackTrace();
+            return true;
         }
     }
 
+    /**
+     * Remove a specific appointment from the Appointments database based on the provided ID.
+     *
+     * @param appointmentID the ID of the appointment to be removed from the Appointments database.
+     * @return A boolean representing a successful deletion of an appointment from the database.
+     */
     public static void deleteAppointment(int appointmentID) {
         try {
-            String sql = "DELETE from Appointments WHERE Appointment_ID = ?";
+            String sql = "DELETE from appointments WHERE Appointment_ID = ?";
             PreparedStatement preparedStatement = JDBC.getConnection().prepareStatement(sql);
 
             preparedStatement.setInt(1, appointmentID);
