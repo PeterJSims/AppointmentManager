@@ -24,9 +24,9 @@ public class MainMenuController implements Initializable {
     @FXML
     private TableColumn<Customer, String> customerNameColumn, customerAddressColumn, customerPostCodeColumn, customerPhoneNumberColumn;
     @FXML
-    private TableColumn<Appointment, Integer> appointmentIDColumn, appointmentCustomerIDColumn, appointmentUserIDColumn;
+    private TableColumn<Appointment, Integer> appointmentIDColumn, appointmentCustomerIDColumn, appointmentUserIDColumn, appointmentContactIDColumn;
     @FXML
-    private TableColumn<Appointment, String> appointmentTitleColumn, appointmentDescriptionColumn, appointmentLocationColumn, appointmentContactColumn, appointmentTypeColumn;
+    private TableColumn<Appointment, String> appointmentTitleColumn, appointmentDescriptionColumn, appointmentLocationColumn, appointmentTypeColumn;
     @FXML
     private TableColumn<Appointment, LocalDateTime> appointmentStartTimeColumn, appointmentEndTimeColumn;
     @FXML
@@ -68,6 +68,7 @@ public class MainMenuController implements Initializable {
         appointmentEndTimeColumn.setCellValueFactory(new PropertyValueFactory<>("end"));
         appointmentCustomerIDColumn.setCellValueFactory(new PropertyValueFactory<>("customerID"));
         appointmentUserIDColumn.setCellValueFactory(new PropertyValueFactory<>("userID"));
+        appointmentContactIDColumn.setCellValueFactory(new PropertyValueFactory<>("contactID"));
 
         customersTable.setItems(allCustomers);
         appointmentsTable.setItems(allAppointments);

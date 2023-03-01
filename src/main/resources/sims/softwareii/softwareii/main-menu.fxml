@@ -39,20 +39,20 @@
             </children>
         </AnchorPane>
         <Button fx:id="exitButton" layoutX="1035.0" layoutY="632.0" mnemonicParsing="false" onAction="#onClickExitButton" prefHeight="25.0" prefWidth="46.0" text="Exit" />
-        <AnchorPane layoutX="24.0" layoutY="332.0" prefHeight="245.0" prefWidth="957.0" style="-fx-border-color: black; -fx-border-radius: 15;">
+        <AnchorPane layoutX="24.0" layoutY="336.0" prefHeight="245.0" prefWidth="957.0" style="-fx-border-color: black; -fx-border-radius: 15;">
             <children>
-                <TableView id="productsTable" fx:id="appointmentsTable" layoutX="6.0" layoutY="43.0" prefHeight="160.0" prefWidth="1026.0">
+                <TableView id="productsTable" fx:id="appointmentsTable" layoutX="6.0" layoutY="43.0" prefHeight="160.0" prefWidth="1014.0">
                     <columns>
                         <TableColumn fx:id="appointmentIDColumn" prefWidth="65.0" text="ID" />
-                        <TableColumn fx:id="appointmentTitleColumn" prefWidth="90.0" text="Title" />
-                        <TableColumn fx:id="appointmentDescriptionColumn" prefWidth="113.0" text="Description" />
-                        <TableColumn fx:id="appointmentLocationColumn" prefWidth="118.0" text="Location" />
-                  <TableColumn fx:id="appointmentContactColumn" prefWidth="118.0" text="Contact" />
-                  <TableColumn fx:id="appointmentTypeColumn" prefWidth="118.0" text="Type" />
-                  <TableColumn fx:id="appointmentStartTimeColumn" prefWidth="118.0" text="Start" />
-                  <TableColumn fx:id="appointmentEndTimeColumn" prefWidth="79.0" text="End" />
-                  <TableColumn fx:id="appointmentCustomerIDColumn" prefWidth="103.0" text="Cust. ID" />
-                  <TableColumn fx:id="appointmentUserIDColumn" prefWidth="103.0" text="User ID" />
+                        <TableColumn fx:id="appointmentTitleColumn" prefWidth="133.0" text="Title" />
+                        <TableColumn fx:id="appointmentDescriptionColumn" prefWidth="192.0" text="Description" />
+                        <TableColumn fx:id="appointmentLocationColumn" prefWidth="114.0" text="Location" />
+                  <TableColumn fx:id="appointmentTypeColumn" prefWidth="91.0" text="Type" />
+                  <TableColumn fx:id="appointmentStartTimeColumn" prefWidth="98.0" text="Start" />
+                  <TableColumn fx:id="appointmentEndTimeColumn" prefWidth="84.0" text="End" />
+                  <TableColumn fx:id="appointmentCustomerIDColumn" prefWidth="81.0" text="Cust. ID" />
+                  <TableColumn fx:id="appointmentUserIDColumn" prefWidth="76.0" text="User ID" />
+                  <TableColumn fx:id="appointmentContactIDColumn" prefWidth="79.0" text="Contact ID" />
                     </columns>
                 </TableView>
                 <Label layoutX="31.0" layoutY="19.0" text="Appointments">
