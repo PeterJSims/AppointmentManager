@@ -18,6 +18,32 @@ import java.sql.SQLException;
 public class DBUsers {
 
 
+
+    /**
+     * Before validating the user's password, check if the database contains an entry for the username itself.
+     *
+     * @param userName Username provided by the user's input into the Login screen.
+     * @return A boolean representing a successful fetch of a matching username in the database.
+     */
+    public static boolean findUser(String userName) {
+        try {
+            String sql = "SELECT * FROM users WHERE User_Name = ?";
+
+            PreparedStatement preparedStatement = JDBC.getConnection().prepareStatement(sql);
+
+            preparedStatement.setString(1, userName);
+            ResultSet rs = preparedStatement.executeQuery();
+            if (rs.next()) {
+                return true;
+            } else {
+                return false;
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
     /**
      * @param userName Username provided by the user's input into the Login screen.
      * @param password Password provided by the user's input into the Login screen.
@@ -44,8 +70,6 @@ public class DBUsers {
             e.printStackTrace();
             return false;
         }
-
-
     }
 
     /**

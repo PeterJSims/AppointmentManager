@@ -23,7 +23,10 @@
             <Font size="15.0" />
          </font></Label>
       <Label fx:id="timezoneDisplay" layoutX="14.0" layoutY="271.0" prefHeight="17.0" prefWidth="206.0" textAlignment="CENTER" textFill="#447526" />
-      <Label fx:id="errorMessageLabel" layoutX="12.0" layoutY="352.0" prefHeight="17.0" prefWidth="358.0" textAlignment="CENTER" textFill="#da4b4b" />
+      <Label fx:id="errorMessageLabel" layoutX="12.0" layoutY="352.0" prefHeight="17.0" prefWidth="358.0" textAlignment="CENTER" textFill="#da4b4b">
+         <font>
+            <Font size="15.0" />
+         </font></Label>
       <Label fx:id="usernameLabel" layoutX="117.0" layoutY="134.0" text="Username" />
       <Label fx:id="passwordLabel" layoutX="118.0" layoutY="167.0" text="Password" />
       <TextField fx:id="usernameTextField" layoutX="213.0" layoutY="129.0" onMouseClicked="#onEnteringDataClearWarnings" prefHeight="26.0" prefWidth="176.0" />
