@@ -1,9 +1,13 @@
 package sims.softwareii.softwareii.controller;
 
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import sims.softwareii.softwareii.model.Appointment;
 
-public class ModifyAppointmentController {
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class ModifyAppointmentController implements Initializable {
     private static Appointment appointmentToModify;
 
 
@@ -17,5 +21,9 @@ public class ModifyAppointmentController {
         ModifyAppointmentController.appointmentToModify = appointment;
     }
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+
+    }
 }
 

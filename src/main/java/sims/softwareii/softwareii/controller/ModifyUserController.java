@@ -1,9 +1,13 @@
 package sims.softwareii.softwareii.controller;
 
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import sims.softwareii.softwareii.model.User;
 
-public class ModifyUserController {
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class ModifyUserController implements Initializable {
     public static User currentUser;
 
     /**
@@ -16,4 +20,8 @@ public class ModifyUserController {
         currentUser = user;
     }
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+
+    }
 }

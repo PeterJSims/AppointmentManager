@@ -1,14 +1,75 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="sims.softwareii.softwareii.controller.MainMenuController"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="671.0" prefWidth="1096.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sims.softwareii.softwareii.controller.MainMenuController">
+    <children>
+        <Label layoutX="373.0" layoutY="39.0" style="-fx-font-weight: bold;" text="CustPoint Management System">
+            <font>
+                <Font name="Arial Bold" size="20.0" />
+            </font>
+        </Label>
+        <AnchorPane layoutX="24.0" layoutY="74.0" prefHeight="245.0" prefWidth="595.0" style="-fx-border-color: black; -fx-border-radius: 15;">
+            <children>
+                <TableView id="partsTable" fx:id="customersTable" layoutX="5.0" layoutY="43.0" prefHeight="160.0" prefWidth="583.0">
+                    <columns>
+                        <TableColumn fx:id="customerIDColumn" prefWidth="53.0" text="ID" />
+                        <TableColumn id="partNameColumn" fx:id="customerNameColumn" prefWidth="102.0" text="Name" />
+                        <TableColumn fx:id="customerAddressColumn" prefWidth="138.0" text="Address" />
+                        <TableColumn fx:id="customerPostCodeColumn" prefWidth="97.0" text="Postal Code" />
+                  <TableColumn fx:id="customerPhoneNumberColumn" prefWidth="96.0" text="Phone #" />
+                  <TableColumn fx:id="customerDivisionIDColumn" prefWidth="96.0" text="Division ID" />
+                    </columns>
+                </TableView>
+                <Label layoutX="30.0" layoutY="19.0" text="Customers">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font></Label>
+                <TextField id="partsSearch" fx:id="partsSearchField" layoutX="389.0" layoutY="16.0" prefHeight="25.0" prefWidth="192.0" promptText="Search by Part ID or Name" text="Search by Customer ID or Name" />
+                <Button fx:id="customerAddButton" layoutX="306.0" layoutY="206.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="46.0" text="Add" />
+                <Button fx:id="customerModifyButton" layoutX="362.0" layoutY="206.0" mnemonicParsing="false" text="Modify" />
+                <Button fx:id="customerDeleteButton" layoutX="426.0" layoutY="206.0" mnemonicParsing="false" text="Delete" />
+                <Button fx:id="customerSearchButton" layoutX="333.0" layoutY="16.0" mnemonicParsing="false" text="Search" />
+            </children>
+        </AnchorPane>
+        <Button fx:id="exitButton" layoutX="1035.0" layoutY="632.0" mnemonicParsing="false" onAction="#onClickExitButton" prefHeight="25.0" prefWidth="46.0" text="Exit" />
+        <AnchorPane layoutX="24.0" layoutY="332.0" prefHeight="245.0" prefWidth="957.0" style="-fx-border-color: black; -fx-border-radius: 15;">
+            <children>
+                <TableView id="productsTable" fx:id="appointmentsTable" layoutX="6.0" layoutY="43.0" prefHeight="160.0" prefWidth="1026.0">
+                    <columns>
+                        <TableColumn fx:id="appointmentIDColumn" prefWidth="65.0" text="ID" />
+                        <TableColumn fx:id="appointmentTitleColumn" prefWidth="90.0" text="Title" />
+                        <TableColumn fx:id="appointmentDescriptionColumn" prefWidth="113.0" text="Description" />
+                        <TableColumn fx:id="appointmentLocationColumn" prefWidth="118.0" text="Location" />
+                  <TableColumn fx:id="appointmentContactColumn" prefWidth="118.0" text="Contact" />
+                  <TableColumn fx:id="appointmentTypeColumn" prefWidth="118.0" text="Type" />
+                  <TableColumn fx:id="appointmentStartTimeColumn" prefWidth="118.0" text="Start" />
+                  <TableColumn fx:id="appointmentEndTimeColumn" prefWidth="79.0" text="End" />
+                  <TableColumn fx:id="appointmentCustomerIDColumn" prefWidth="103.0" text="Cust. ID" />
+                  <TableColumn fx:id="appointmentUserIDColumn" prefWidth="103.0" text="User ID" />
+                    </columns>
+                </TableView>
+                <Label layoutX="31.0" layoutY="19.0" text="Appointments">
+               <font>
+                  <Font size="15.0" />
+               </font></Label>
+                <TextField id="productsSearch" fx:id="appointmentSearchField" layoutX="822.0" layoutY="16.0" prefHeight="25.0" prefWidth="199.0" promptText="Search by Product ID or Name" text="Search by Appointment ID or Title" />
+                <Button fx:id="appointmentAddButton" layoutX="837.0" layoutY="203.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="46.0" text="Add" />
+                <Button fx:id="appointmentModifyButton" layoutX="893.0" layoutY="203.0" mnemonicParsing="false" text="Modify" />
+                <Button fx:id="appointmentDeleteButton" layoutX="957.0" layoutY="203.0" mnemonicParsing="false" text="Delete" />
+                <Button fx:id="appointmentSearchButton" layoutX="766.0" layoutY="16.0" mnemonicParsing="false" text="Search" />
+            </children>
+        </AnchorPane>
+      <Label fx:id="errorMessageLabel" layoutX="40.0" layoutY="615.0" prefHeight="36.0" prefWidth="791.0" textFill="#e82e2e">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+    </children>
 </AnchorPane>
