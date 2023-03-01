@@ -1,15 +1,15 @@
-module sims.softwareii.softwareii {
+module sims.custpoint {
     requires javafx.controls;
     requires javafx.fxml;
     requires java.sql;
 
 
-    opens sims.softwareii.softwareii to javafx.fxml;
-    exports sims.softwareii.softwareii;
-    exports sims.softwareii.softwareii.database;
-    opens sims.softwareii.softwareii.database to javafx.fxml;
-    exports sims.softwareii.softwareii.model;
-    opens sims.softwareii.softwareii.model to javafx.fxml;
-    exports sims.softwareii.softwareii.controller;
-    opens sims.softwareii.softwareii.controller to javafx.fxml;
+    opens sims.custpoint to javafx.fxml;
+    exports sims.custpoint;
+    exports sims.custpoint.database;
+    opens sims.custpoint.database to javafx.fxml;
+    exports sims.custpoint.model;
+    opens sims.custpoint.model to javafx.fxml;
+    exports sims.custpoint.controller;
+    opens sims.custpoint.controller to javafx.fxml;
 }
