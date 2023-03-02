@@ -26,8 +26,8 @@ public class DBAppointments {
      * @param description A description of the new appointment.
      * @param location    The location of the new appointment.
      * @param type        The new appointment's type.
-     * @param start       The starting time and date of the new appointment.
-     * @param end         The ending time and date of the new appointment.
+     * @param start       The starting time and date of the new appointment. The application's LocalDateTime is converted to the database's UTC based Timestamp.
+     * @param end         The ending time and date of the new appointment. The application's LocalDateTime is converted to the database's UTC based Timestamp.
      * @param customerID  The customer ID tying the new appointment to a Customers table entry.
      * @param userID      The user ID tying the new appointment to a Users table entry.
      * @param contactID   The contact ID tying the new appointment to a Contacts table entry.
@@ -78,6 +78,7 @@ public class DBAppointments {
         }
         return appointmentList;
     }
+
     /**
      * Returns an ObservableList-type list of appointments queried from the database based upon a provided title.
      *
@@ -124,6 +125,7 @@ public class DBAppointments {
 
     /**
      * Iterates through a provided ResultSet and sets all items within to new additions in the provided appointmentsList. Operates via the mutable nature of the ObservableList.
+     * All database Timestamp objects are converted to LocalDateTime for localized use in the application.
      *
      * @param appointmentList The ObservableList object to contain all appointments returned from the database query.
      * @param rs              The result of the database query run against the Appointments table.

@@ -23,6 +23,11 @@ public class CustomerController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+//        if (customerToEdit == null){
+//            do add stuff
+//        } else {
+//            do modify stuff
+//        }
     }
+
 }

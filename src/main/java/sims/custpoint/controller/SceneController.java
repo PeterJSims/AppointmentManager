@@ -57,6 +57,25 @@ public class SceneController implements Initializable {
         switchScene("/sims/custpoint/main-menu.fxml", event);
     }
 
+    /**
+     * Switches the current scene to the Customer add/modify screen when called.
+     *
+     * @param event The event initially calling the action to switch scenes.
+     */
+    @FXML
+    public static void switchToCustomerScreen(ActionEvent event) {
+        switchScene("/sims/custpoint/customer.fxml", event);
+    }
+
+    /**
+     * Switches the current scene to the Appointment add/modify screen when called.
+     *
+     * @param event The event initially calling the action to switch scenes.
+     */
+    @FXML
+    public static void switchToAppointmentScreen(ActionEvent event) {
+        switchScene("/sims/custpoint/appointment.fxml", event);
+    }
 
     /**
      * Closes all scenes and thus the program itself. Because all scenes are closed and the application is finished, the database connection is also closed.

@@ -204,7 +204,113 @@ public class MainMenuController implements Initializable {
 
             return false;
         });
+    }
 
+    /**
+     * On clicking the add button, move to the Customer screen with the adding functionality enabled.
+     *
+     * @param e The button press event on the Add button under the Customers table.
+     */
+    @FXML
+    private void onClickAddCustomerButton(ActionEvent e) {
+        CustomerController.receivePassedCustomer(null);
+        SceneController.switchToCustomerScreen(e);
+    }
+
+    /**
+     * On clicking the modify button, move to the Customer screen with the modify functionality enabled. The method also passes the Customer entry to modify.
+     *
+     * @param e The button press event on the Modify button under the Customers table.
+     */
+    @FXML
+    private void onClickModifyCustomerButton(ActionEvent e) {
+        errorMessageLabel.setText("");
+        Customer currentCustomer = customersTable.getSelectionModel().getSelectedItem();
+        if (currentCustomer == null) {
+            errorMessageLabel.setText("No customer selected");
+        } else {
+            CustomerController.receivePassedCustomer(currentCustomer);
+            SceneController.switchToCustomerScreen(e);
+        }
+    }
+
+    /**
+     * Deletes the selected customer from the database after confirmation. It also clears all appointments tied to the customer.
+     *
+     * @param e The button press event on the Delete button under the Customers table.
+     */
+    @FXML
+    private void onClickDeleteCustomerButton(ActionEvent e) {
+        errorMessageLabel.setText("");
+        Customer currentCustomer = customersTable.getSelectionModel().getSelectedItem();
+        if (currentCustomer == null) {
+            errorMessageLabel.setText("No customer selected");
+        } else {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Delete Customer?");
+            alert.setContentText("Confirm the deletion of customer \"" + currentCustomer + "\"?");
+            alert.showAndWait().ifPresent(res -> {
+                if (res == ButtonType.OK) {
+                    DBCustomers.deleteUser(currentCustomer.getCustomerID());
+                    errorMessageLabel.setText("Customer \"" + currentCustomer + "\"  deleted.");
+                }
+            });
+            clearAndSetTable("customers");
+            clearAndSetTable("appointments");
+        }
+    }
+
+    /**
+     * On clicking the add button, move to the Appointment screen with the adding functionality enabled.
+     *
+     * @param e The button press event on the Add button under the Appointments table.
+     */
+    @FXML
+    private void onClickAddAppointmentButton(ActionEvent e) {
+        AppointmentController.receivePassedAppointment(null);
+        SceneController.switchToAppointmentScreen(e);
+    }
+
+    /**
+     * On clicking the modify button, move to the Appointment screen with the modify functionality enabled. The method also passes the Appointment entry to modify.
+     *
+     * @param e The button press event on the Modify button under the Appointments table.
+     */
+    @FXML
+    private void onClickModifyAppointmentButton(ActionEvent e) {
+        errorMessageLabel.setText("");
+        Appointment currentAppointment = appointmentsTable.getSelectionModel().getSelectedItem();
+        if (currentAppointment == null) {
+            errorMessageLabel.setText("No appointment selected");
+        } else {
+            AppointmentController.receivePassedAppointment(currentAppointment);
+            SceneController.switchToAppointmentScreen(e);
+        }
+    }
+
+    /**
+     * Removes the currently selected appointment from the database.
+     *
+     * @param e The button press event on the Delete button under the Appointments table.
+     */
+    @FXML
+    private void onClickDeleteAppointmentButton(ActionEvent e) {
+        errorMessageLabel.setText("");
+        Appointment currentAppointment = appointmentsTable.getSelectionModel().getSelectedItem();
+        if (currentAppointment == null) {
+            errorMessageLabel.setText("No appointment selected");
+        } else {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Delete Appointment?");
+            alert.setContentText("Confirm the deletion of appointment \"" + currentAppointment + "\"?");
+            alert.showAndWait().ifPresent(res -> {
+                if (res == ButtonType.OK) {
+                    DBAppointments.deleteAppointment(currentAppointment.getAppointmentID());
+                    errorMessageLabel.setText("Appointment \"" + currentAppointment + "\"  deleted.");
+                }
+            });
+            clearAndSetTable("appointments");
+        }
     }
 
     @Override

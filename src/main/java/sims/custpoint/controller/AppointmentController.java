@@ -7,7 +7,7 @@ import sims.custpoint.model.Appointment;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class ModifyAppointmentController implements Initializable {
+public class AppointmentController implements Initializable {
     private static Appointment appointmentToModify;
 
 
@@ -18,12 +18,16 @@ public class ModifyAppointmentController implements Initializable {
      */
     @FXML
     public static void receivePassedAppointment(Appointment appointment) {
-        ModifyAppointmentController.appointmentToModify = appointment;
+        AppointmentController.appointmentToModify = appointment;
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+//        if (customerToEdit == null){
+//            do add stuff
+//        } else {
+//            do modify stuff
+//        }
     }
 }
 
