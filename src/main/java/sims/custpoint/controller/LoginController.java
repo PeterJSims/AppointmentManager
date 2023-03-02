@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import sims.custpoint.dao.DBUsers;
+import sims.custpoint.model.User;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -47,9 +48,10 @@ public class LoginController implements Initializable {
                 return;
             }
 
-            boolean userMatches = DBUsers.validateUser(userName, password);
-            if (userMatches) {
+            User matchingUser = DBUsers.matchUser(userName, password);
+            if (matchingUser != null) {
                 writeAccessLog(userName, true);
+                User.setCurrentUser(matchingUser);
                 System.out.println("Access Granted");
                 SceneController.switchToMainMenuScreen(e);
             } else {

@@ -11,6 +11,7 @@ import sims.custpoint.dao.DBCustomers;
 import sims.custpoint.dao.DBAppointments;
 import sims.custpoint.model.Appointment;
 import sims.custpoint.model.Customer;
+import sims.custpoint.model.User;
 
 import java.net.URL;
 import java.time.Duration;
@@ -313,6 +314,12 @@ public class MainMenuController implements Initializable {
         }
     }
 
+    /**
+     * Initializes the main-menu screen by setting cell values to types and names and populating them.
+     *
+     * @param url            The location used to resolve relative paths for the root object, or null if the location is not known.
+     * @param resourceBundle The resources used to localize the root object, or null if the root object was not localized.
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         ObservableList<Customer> allCustomers = DBCustomers.getCustomers();
@@ -339,5 +346,6 @@ public class MainMenuController implements Initializable {
 
         customersTable.setItems(allCustomers);
         appointmentsTable.setItems(allAppointments);
+
     }
 }

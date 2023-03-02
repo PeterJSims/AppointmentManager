@@ -6,6 +6,7 @@ package sims.custpoint.model;
  * @author Peter Sims
  */
 public class User {
+    public static User currentUser;
     /**
      * The user entry's immutable and unique ID.
      */
@@ -57,17 +58,18 @@ public class User {
     }
 
     /**
-     * Set the entry's username.
+     * Get the current user logged into the application.
+     * @return The current user logged into the application.
      */
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public static User getCurrentUser() {
+        return currentUser;
     }
 
     /**
-     * Set the entry's password.
+     * Set the current user logged into the application.
      */
-    public void setPassword(String password) {
-        this.password = password;
+    public static void setCurrentUser(User currentUser) {
+        User.currentUser = currentUser;
     }
 
     /**

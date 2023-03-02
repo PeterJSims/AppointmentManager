@@ -18,7 +18,6 @@ import java.sql.SQLException;
 public class DBUsers {
 
 
-
     /**
      * Before validating the user's password, check if the database contains an entry for the username itself.
      *
@@ -44,12 +43,15 @@ public class DBUsers {
             return false;
         }
     }
+
     /**
+     * Determines if there is an Users table entry matching both the provided username and password.
+     *
      * @param userName Username provided by the user's input into the Login screen.
      * @param password Password provided by the user's input into the Login screen.
      * @return A boolean representing a successful fetch of a matching user from the database.
      */
-    public static boolean validateUser(String userName, String password) {
+    public static User matchUser(String userName, String password) {
         try {
             String sql = "SELECT * FROM users WHERE User_Name = ? AND Password = ? ";
 
@@ -61,15 +63,13 @@ public class DBUsers {
             ResultSet rs = preparedStatement.executeQuery();
 
             if (rs.next()) {
-                return true;
-            } else {
-                return false;
+                int userID = rs.getInt("User_ID");
+                return new User(userID, userName, password);
             }
-
         } catch (SQLException e) {
             e.printStackTrace();
-            return false;
         }
+        return null;
     }
 
     /**
