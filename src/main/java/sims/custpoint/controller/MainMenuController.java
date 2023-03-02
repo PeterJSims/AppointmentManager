@@ -1,5 +1,6 @@
 package sims.custpoint.controller;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -12,8 +13,14 @@ import sims.custpoint.model.Appointment;
 import sims.custpoint.model.Customer;
 
 import java.net.URL;
+import java.time.Duration;
 import java.time.LocalDateTime;
+import java.time.Month;
+import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
+
+import static java.util.stream.Collectors.toList;
 
 public class MainMenuController implements Initializable {
     @FXML
@@ -31,10 +38,42 @@ public class MainMenuController implements Initializable {
     @FXML
     private TableColumn<Appointment, LocalDateTime> appointmentStartTimeColumn, appointmentEndTimeColumn;
     @FXML
-    private Label errorMessageLabel;
+    private Label errorMessageLabel, fifteenMinuteLabel, pendingAppointmentLabel;
     @FXML
     private TextField customersSearchField, appointmentsSearchField;
+    @FXML
+    private RadioButton allDatesRadioButton, currentMonthRadioButton, currentWeekRadioButton;
 
+
+    /**
+     * LAMBDA: The filtering by month and week provided a chance to much more easily create a date checking system. The month allowed for a simple (though slightly long) one liner to filter out unnecessary items, where the week allowed for a statement within the lambda to filter out unnecessary items.
+     * A method that handles the radio buttons allowing users to pick if they view all appointments, the appointments this week, or the appointments this month. Instead of using more DB calls, this will simply filter out what is shown based on a Java stream.
+     * The month filter selects for the current calendar month and the week filter selects the current day and stops at the end of the week thereafter (i.e. Mon-Sun, Wed-Tues).
+     */
+    @FXML
+    private void selectDateRange() {
+        errorMessageLabel.setText("");
+
+        if (allDatesRadioButton.isSelected()) {
+            clearAndSetTable("appointments");
+        } else if (currentMonthRadioButton.isSelected()) {
+            ObservableList<Appointment> filteredByCurrentMonth =
+                    DBAppointments.getAppointments().stream().filter(x -> Month.from(x.getStart()).equals(Month.from(LocalDateTime.now())))
+                            .collect(Collectors.collectingAndThen(toList(), l -> FXCollections.observableArrayList(l)));
+            appointmentsTable.getItems().clear();
+            appointmentsTable.setItems(filteredByCurrentMonth);
+        } else if (currentWeekRadioButton.isSelected()) {
+            ObservableList<Appointment> filteredByCurrentWeek =
+                    DBAppointments.getAppointments().stream().filter(x ->
+                            {
+                                LocalDateTime current = LocalDateTime.now();
+                                return x.getStart().isAfter(current) && x.getStart().minusDays(6).isBefore(current);
+                            })
+                            .collect(Collectors.collectingAndThen(toList(), l -> FXCollections.observableArrayList(l)));
+            appointmentsTable.getItems().clear();
+            appointmentsTable.setItems(filteredByCurrentWeek);
+        }
+    }
 
     /**
      * Search for a customer by passing either its unique ID or the customer name. All items starting with the string or matching the exact ID will be displayed.
@@ -75,7 +114,7 @@ public class MainMenuController implements Initializable {
 
     /**
      * Search for an appointment by passing either its unique ID or the title. All items starting with the string or matching the exact ID will be displayed.
-
+     *
      * @param e Event calling the method, either clicking the "Search" button or pressing the enter key in the search field.
      */
     @FXML
@@ -136,16 +175,44 @@ public class MainMenuController implements Initializable {
             customersTable.getItems().clear();
             customersTable.setItems(allCustomers);
         } else if (tableName.equalsIgnoreCase("appointments")) {
-            ObservableList<Appointment> allAppointments = DBAppointments.getCustomers();
+            ObservableList<Appointment> allAppointments = DBAppointments.getAppointments();
             appointmentsTable.getItems().clear();
             appointmentsTable.setItems(allAppointments);
         }
     }
 
+    /**
+     * LAMBDA: A cleaner approach to the normal for loop was presented by the anyMatch method. This allowed me to create a stream and iterate through the list until a match is found (or not) and alter the display accordingly. The simple .stream().anyMatch() previously would have required more code than those two methods.
+     * <p>
+     * Iterates through a provided ObservableList of appointments and determines if any are within the next fifteen minutes. If so, relevant appointment information will be displayed on the screen. And if not, the user will be aware there are no pending appointments.
+     *
+     * @param appointments
+     */
+    @FXML
+    private void displayPendingAppointment(ObservableList<Appointment> appointments) {
+        final int SECONDS_FOR_ALERT = 900;
+        appointments.stream().anyMatch(x ->
+        {
+            long timeToAppointment = Duration.between(LocalDateTime.now(), x.getStart()).toSeconds();
+            if (timeToAppointment > 0 && timeToAppointment < SECONDS_FOR_ALERT) {
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+                fifteenMinuteLabel.setText("The following appointment is within 15 minutes:");
+                pendingAppointmentLabel.setText("Appointment ID: " + x.getAppointmentID() + " | Start: " + x.getStart().format(formatter));
+                return true;
+            }
+            fifteenMinuteLabel.setText("No appointments within the next 15 minutes.");
+
+            return false;
+        });
+
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         ObservableList<Customer> allCustomers = DBCustomers.getCustomers();
-        ObservableList<Appointment> allAppointments = DBAppointments.getCustomers();
+        ObservableList<Appointment> allAppointments = DBAppointments.getAppointments();
+
+        displayPendingAppointment(allAppointments);
 
         customerIDColumn.setCellValueFactory(new PropertyValueFactory<>("customerID"));
         customerNameColumn.setCellValueFactory(new PropertyValueFactory<>("customerName"));

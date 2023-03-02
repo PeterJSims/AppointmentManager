@@ -63,7 +63,7 @@ public class DBAppointments {
      *
      * @return An ObservableList-type list of Appointment objects.
      */
-    public static ObservableList<Appointment> getCustomers() {
+    public static ObservableList<Appointment> getAppointments() {
         ObservableList<Appointment> appointmentList = FXCollections.observableArrayList();
 
         try {
