@@ -11,7 +11,6 @@ import sims.custpoint.dao.DBCustomers;
 import sims.custpoint.dao.DBAppointments;
 import sims.custpoint.model.Appointment;
 import sims.custpoint.model.Customer;
-import sims.custpoint.model.User;
 
 import java.net.URL;
 import java.time.Duration;
@@ -23,6 +22,9 @@ import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.toList;
 
+/**
+ * A class responsible for handling logic within the Main Menu screen. Consists of generating displays for customers and inventory, adding, updating, and deleted said customers and appointments, checking for pending appointments, and report selection.
+ */
 public class MainMenuController implements Initializable {
     @FXML
     private TableView<Customer> customersTable;
@@ -307,7 +309,7 @@ public class MainMenuController implements Initializable {
             alert.showAndWait().ifPresent(res -> {
                 if (res == ButtonType.OK) {
                     DBAppointments.deleteAppointment(currentAppointment.getAppointmentID());
-                    errorMessageLabel.setText("Appointment \"" + currentAppointment + "\"  deleted.");
+                    errorMessageLabel.setText("Appointment ID: " + currentAppointment.getAppointmentID() + " Type: " + currentAppointment.getType() + "  canceled.");
                 }
             });
             clearAndSetTable("appointments");
@@ -333,6 +335,7 @@ public class MainMenuController implements Initializable {
         customerPostCodeColumn.setCellValueFactory(new PropertyValueFactory<>("postalCode"));
         customerPhoneNumberColumn.setCellValueFactory(new PropertyValueFactory<>("phone"));
         customerDivisionIDColumn.setCellValueFactory(new PropertyValueFactory<>("divisionID"));
+
         appointmentIDColumn.setCellValueFactory(new PropertyValueFactory<>("appointmentID"));
         appointmentTitleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
         appointmentDescriptionColumn.setCellValueFactory(new PropertyValueFactory<>("description"));

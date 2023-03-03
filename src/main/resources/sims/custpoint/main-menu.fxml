@@ -21,12 +21,12 @@
             <children>
                 <TableView id="partsTable" fx:id="customersTable" layoutX="5.0" layoutY="43.0" prefHeight="160.0" prefWidth="583.0">
                     <columns>
-                        <TableColumn fx:id="customerIDColumn" prefWidth="53.0" text="ID" />
-                        <TableColumn id="partNameColumn" fx:id="customerNameColumn" prefWidth="102.0" text="Name" />
-                        <TableColumn fx:id="customerAddressColumn" prefWidth="138.0" text="Address" />
-                        <TableColumn fx:id="customerPostCodeColumn" prefWidth="97.0" text="Postal Code" />
-                  <TableColumn fx:id="customerPhoneNumberColumn" prefWidth="96.0" text="Phone #" />
-                  <TableColumn fx:id="customerDivisionIDColumn" prefWidth="96.0" text="Division ID" />
+                        <TableColumn fx:id="customerIDColumn" prefWidth="36.0" text="ID" />
+                        <TableColumn id="partNameColumn" fx:id="customerNameColumn" prefWidth="119.0" text="Name" />
+                        <TableColumn fx:id="customerAddressColumn" prefWidth="177.0" text="Address" />
+                        <TableColumn fx:id="customerPostCodeColumn" prefWidth="91.0" text="Postal Code" />
+                  <TableColumn fx:id="customerPhoneNumberColumn" prefWidth="91.0" text="Phone #" />
+                  <TableColumn fx:id="customerDivisionIDColumn" prefWidth="68.0" text="Division ID" />
                     </columns>
                 </TableView>
                 <Label layoutX="30.0" layoutY="19.0" text="Customers">
@@ -45,16 +45,16 @@
             <children>
                 <TableView id="productsTable" fx:id="appointmentsTable" layoutX="6.0" layoutY="43.0" prefHeight="160.0" prefWidth="1010.0">
                     <columns>
-                        <TableColumn fx:id="appointmentIDColumn" prefWidth="65.0" text="ID" />
-                        <TableColumn fx:id="appointmentTitleColumn" prefWidth="133.0" text="Title" />
-                        <TableColumn fx:id="appointmentDescriptionColumn" prefWidth="192.0" text="Description" />
-                        <TableColumn fx:id="appointmentLocationColumn" prefWidth="114.0" text="Location" />
-                  <TableColumn fx:id="appointmentTypeColumn" prefWidth="91.0" text="Type" />
-                  <TableColumn fx:id="appointmentStartTimeColumn" prefWidth="98.0" text="Start" />
-                  <TableColumn fx:id="appointmentEndTimeColumn" prefWidth="84.0" text="End" />
-                  <TableColumn fx:id="appointmentCustomerIDColumn" prefWidth="81.0" text="Cust. ID" />
-                  <TableColumn fx:id="appointmentUserIDColumn" prefWidth="76.0" text="User ID" />
-                  <TableColumn fx:id="appointmentContactIDColumn" prefWidth="73.0" text="Contact ID" />
+                        <TableColumn fx:id="appointmentIDColumn" prefWidth="33.0" text="ID" />
+                        <TableColumn fx:id="appointmentTitleColumn" prefWidth="144.0" text="Title" />
+                        <TableColumn fx:id="appointmentDescriptionColumn" prefWidth="187.0" text="Description" />
+                        <TableColumn fx:id="appointmentLocationColumn" prefWidth="108.0" text="Location" />
+                  <TableColumn fx:id="appointmentTypeColumn" prefWidth="109.0" text="Type" />
+                  <TableColumn fx:id="appointmentStartTimeColumn" prefWidth="122.0" text="Start" />
+                  <TableColumn fx:id="appointmentEndTimeColumn" prefWidth="125.0" text="End" />
+                  <TableColumn fx:id="appointmentCustomerIDColumn" prefWidth="55.0" text="Cust. ID" />
+                  <TableColumn fx:id="appointmentUserIDColumn" prefWidth="61.0" text="User ID" />
+                  <TableColumn fx:id="appointmentContactIDColumn" prefWidth="63.0" text="Contact ID" />
                     </columns>
                 </TableView>
                 <Label layoutX="31.0" layoutY="19.0" text="Appointments">

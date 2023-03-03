@@ -1,12 +1,15 @@
 package sims.custpoint;
 
 import javafx.application.Application;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import sims.custpoint.database.JDBC;
 
 import java.io.IOException;
+
+
 
 /**
  * The main entrypoint into the CustPoint customer/appointment scheduling application.
@@ -41,7 +44,6 @@ public class Main extends Application {
 
         launch();
         JDBC.closeConnection();
-
 
     }
 }

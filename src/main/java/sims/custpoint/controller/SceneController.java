@@ -17,9 +17,9 @@ import java.util.ResourceBundle;
 
 
 /**
- * @author Peter Sims
- * <p>
  * A class for delegating the work of switching  scenes within other controllers.
+ *
+ * @author Peter Sims
  */
 public class SceneController implements Initializable {
 
@@ -42,6 +42,9 @@ public class SceneController implements Initializable {
             stage.setScene(scene);
             stage.show();
         } catch (IOException ex) {
+            System.out.println(ex);
+            System.out.println(ex.getMessage());
+            System.out.println(ex.getCause());
             System.out.println("Could not load " + sceneFileName);
         }
 
