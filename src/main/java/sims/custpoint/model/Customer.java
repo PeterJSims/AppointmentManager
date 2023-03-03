@@ -111,6 +111,6 @@ public class Customer {
      */
     @Override
     public String toString() {
-        return getCustomerName() + " | [ID: " + getCustomerID() + "]";
+        return getCustomerName() + "  [ID: " + getCustomerID() + "]";
     }
 }

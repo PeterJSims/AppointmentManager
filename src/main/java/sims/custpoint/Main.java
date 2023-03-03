@@ -8,7 +8,10 @@ import javafx.stage.Stage;
 import sims.custpoint.database.JDBC;
 
 import java.io.IOException;
-
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 
 
 /**
@@ -24,7 +27,7 @@ public class Main extends Application {
      */
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("login.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("main-menu.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("CustPoint - Customer/Appointment Management");
         stage.setScene(scene);

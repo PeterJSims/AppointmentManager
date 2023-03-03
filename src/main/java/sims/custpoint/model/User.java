@@ -78,6 +78,6 @@ public class User {
      */
     @Override
     public String toString() {
-        return "Username: " + getUserName() + " | [ID: " + getUserID() + "]";
+        return getUserName() + "  [ID: " + getUserID() + "]";
     }
 }

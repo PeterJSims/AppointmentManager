@@ -16,6 +16,11 @@ import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.TimeZone;
 
+/**
+ * Controls the logic of the Login screen such as validating username/passwords, publishing logs, and routing to the main menu screen upon successful validation.
+ *
+ * @author Peter Sims
+ */
 public class LoginController implements Initializable {
     static ResourceBundle rb = ResourceBundle.getBundle("bundle/lang", Locale.getDefault());
     static String timeZoneName = TimeZone.getDefault().getID();
@@ -93,7 +98,7 @@ public class LoginController implements Initializable {
         try (FileWriter fr = new FileWriter("login_activity.txt", true)) {
             PrintWriter pw = new PrintWriter(fr);
             String successOrFail = isSuccess ? "Successful" : "Failed";
-            pw.append(successOrFail + " login attempt by \"" + userName + "\" at " + currentTime + "\n");
+            pw.append(successOrFail + " login attempt by " + userName + " at " + currentTime + "\n");
         } catch (IOException e) {
             e.printStackTrace();
         }

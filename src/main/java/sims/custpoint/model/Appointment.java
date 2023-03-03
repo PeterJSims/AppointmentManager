@@ -175,6 +175,6 @@ public class Appointment {
      */
     @Override
     public String toString() {
-        return getTitle() + " | [ID: " + getAppointmentID() + "]";
+        return getTitle() + "  [ID: " + getAppointmentID() + "]";
     }
 }
