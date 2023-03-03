@@ -65,24 +65,17 @@ public class AppointmentController implements Initializable {
      */
     @FXML
     private boolean isNotOverlappingAppointment(int customerID, LocalDateTime newAppStart, LocalDateTime newAppEnd) {
-        // NOTE IF NEWAPPEND IS AFTER START IT'S BECAUSE IT OVERLAPPED INTO THE NEXT DAY
-//        if (newAppStart.isAfter(newAppEnd)) newAppEnd.plusDays(1);
-
         for (Appointment app : allAppointments) {
             if (customerID == app.getCustomerID()) {
 
                 // No need to check the appointment against itself.
-                if(!isAddMode && (app.getAppointmentID() == appointmentToModify.getAppointmentID() )) {
+                if (!isAddMode && (app.getAppointmentID() == appointmentToModify.getAppointmentID())) {
                     continue;
                 }
 
                 LocalDateTime appStart = app.getStart();
                 LocalDateTime appEnd = app.getEnd();
-//                System.out.println((newAppStart.isBefore(appStart) && newAppEnd.isAfter(appStart)));
-//                System.out.println((newAppStart.isBefore(appStart) && newAppEnd.isAfter(appEnd)));
-//                System.out.println(newAppStart.isBefore(appEnd) && newAppEnd.isAfter(appEnd));
-//                System.out.println((newAppStart.isAfter(appStart) && newAppEnd.isBefore(appEnd)));
-//                System.out.println((newAppStart.equals(appStart) || newAppEnd.equals(appEnd)));
+
                 // 1 -- new appointment overlaps an appointment at its beginning
                 if ((newAppStart.isBefore(appStart) && newAppEnd.isAfter(appStart))
                         // 2 -- new appointment overlaps an existing appointing on both time ends
@@ -111,7 +104,6 @@ public class AppointmentController implements Initializable {
      */
     @FXML
     private void populateTimeFields() {
-        // NOTE FOR ME: parsing the times generated below will maintain their local characteristic (ie parsing "08:00" is always 08:00).
         LocalDateTime startTime = LocalDateTime.now(ZoneId.of("America/New_York")).withHour(8).withMinute(0);
         LocalDateTime endTime = LocalDateTime.now(ZoneId.of("America/New_York")).withHour(22).withMinute(0);
         ZoneId localZone = ZoneId.systemDefault();
@@ -183,6 +175,7 @@ public class AppointmentController implements Initializable {
     @FXML
     private void onChangeAppointmentTime(ActionEvent e) {
         errorMessageLabel.setText("");
+        errorMessageLabel2.setText("");
         if (startTimesComboBox.getValue() == null && endTimesComboBox.getValue() == null) {
             return;
         }
@@ -213,9 +206,7 @@ public class AppointmentController implements Initializable {
         String startTime = startTimesComboBox.getValue();
         String endTime = endTimesComboBox.getValue();
         String day = appointmentDatePicker.getValue().toString();
-        /*
-        problems here
-         */
+
         LocalDateTime startDateTime = LocalDate.parse(day, dayFormatter).atTime(LocalTime.parse(startTime));
         LocalDateTime endDateTime = LocalDate.parse(day, dayFormatter).atTime(LocalTime.parse(endTime));
         if (startDateTime.isBefore(endDateTime)) endDateTime.plusDays(1);

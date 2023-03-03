@@ -55,5 +55,20 @@
       </TextField>
       <Label fx:id="nameLabel2" layoutX="80.0" layoutY="181.0" text="Type" />
       <Label fx:id="errorMessageLabel2" layoutX="20.0" layoutY="424.0" prefHeight="17.0" prefWidth="383.0" textFill="#e85454" />
+      <Label layoutX="460.0" layoutY="132.0" text="Contact">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="454.0" layoutY="193.0" text="Customer">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="471.0" layoutY="264.0" text="User">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
