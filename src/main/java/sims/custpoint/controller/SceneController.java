@@ -81,6 +81,16 @@ public class SceneController implements Initializable {
     }
 
     /**
+     * Switches the current scene to the Report screen when called.
+     *
+     * @param event The event initially calling the action to switch scenes.
+     */
+    @FXML
+    public static void switchToReportScreen(ActionEvent event) {
+        switchScene("/sims/custpoint/report.fxml", event);
+    }
+
+    /**
      * Closes all scenes and thus the program itself. Because all scenes are closed and the application is finished, the database connection is also closed.
      */
     @FXML

@@ -1,19 +1,13 @@
 package sims.custpoint;
 
 import javafx.application.Application;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import sims.custpoint.dao.DBReport;
 import sims.custpoint.database.JDBC;
-import sims.custpoint.model.DivisionReport;
+
 
 import java.io.IOException;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
 
 
 /**
@@ -48,6 +42,7 @@ public class Main extends Application {
 //        Locale.setDefault(new Locale("fr"));
 
         launch();
+
         JDBC.closeConnection();
 
     }

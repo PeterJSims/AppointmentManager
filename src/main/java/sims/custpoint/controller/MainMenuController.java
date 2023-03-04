@@ -203,7 +203,7 @@ public class MainMenuController implements Initializable {
                 pendingAppointmentLabel.setText("Appointment ID: " + x.getAppointmentID() + " | User ID: " + x.getUserID() + "  | Start Time: " + x.getStart().format(formatter));
                 return true;
             }
-            fifteenMinuteLabel.setText("No appointments within the next 15 minutes.");
+            fifteenMinuteLabel.setText("    No appointments within the next 15 minutes.");
 
             return false;
         });
@@ -314,6 +314,15 @@ public class MainMenuController implements Initializable {
             });
             clearAndSetTable("appointments");
         }
+    }
+
+    /**
+     * Leave the main menu and go to the screen for viewing reports.
+     * @param e The button click event to trigger moving to the new screen.
+     */
+    @FXML
+    private void onClickViewReportsButton(ActionEvent e){
+        SceneController.switchToReportScreen(e);
     }
 
     /**

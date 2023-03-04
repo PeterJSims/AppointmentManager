@@ -90,7 +90,7 @@
             <Font size="15.0" />
          </font>
       </Label>
-      <Button layoutX="746.0" layoutY="283.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="114.0" text="View Reports">
+      <Button fx:id="reportsButton" layoutX="746.0" layoutY="283.0" mnemonicParsing="false" onAction="#onClickViewReportsButton" prefHeight="36.0" prefWidth="114.0" text="View Reports">
          <font>
             <Font size="16.0" />
          </font>
