@@ -80,15 +80,20 @@
             <Font size="16.0" />
          </font>
       </Label>
-      <Label fx:id="fifteenMinuteLabel" layoutX="628.0" layoutY="88.0" prefHeight="19.0" prefWidth="325.0" text="Label" textAlignment="CENTER">
+      <Label fx:id="fifteenMinuteLabel" layoutX="628.0" layoutY="88.0" prefHeight="22.0" prefWidth="396.0" text="Label" textAlignment="CENTER">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font>
+      </Label>
+      <Label fx:id="pendingAppointmentLabel" layoutX="628.0" layoutY="151.0" prefHeight="25.0" prefWidth="396.0">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
-      <Label fx:id="pendingAppointmentLabel" layoutX="628.0" layoutY="151.0" prefHeight="19.0" prefWidth="341.0">
+      <Button layoutX="746.0" layoutY="283.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="114.0" text="View Reports">
          <font>
-            <Font size="15.0" />
+            <Font size="16.0" />
          </font>
-      </Label>
+      </Button>
     </children>
 </AnchorPane>

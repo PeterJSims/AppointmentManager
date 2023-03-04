@@ -1,14 +1,62 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="sims.custpoint.Report"
-            prefHeight="400.0" prefWidth="600.0">
 
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="655.0" prefWidth="921.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label layoutX="428.0" layoutY="14.0" text="Reports">
+         <font>
+            <Font name="System Bold" size="19.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="monthComboBox" layoutX="280.0" layoutY="100.0" prefHeight="25.0" prefWidth="83.0" />
+      <ComboBox fx:id="typeComboBox" layoutX="410.0" layoutY="100.0" prefHeight="25.0" prefWidth="83.0" />
+      <Label layoutX="307.0" layoutY="74.0" text="Month" />
+      <Label layoutX="434.0" layoutY="74.0" text="Type" />
+      <Label fx:id="countLabel" layoutX="543.0" layoutY="103.0" prefHeight="19.0" prefWidth="28.0" text=" ">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="542.0" layoutY="74.0" text="Count" />
+      <Line endX="637.0" layoutX="268.0" layoutY="140.0" startX="-254.0" />
+      <ComboBox fx:id="contactComboBox" layoutX="79.0" layoutY="173.0" prefHeight="25.0" prefWidth="83.0" />
+      <Label layoutX="99.0" layoutY="150.0" text="Contact" />
+      <AnchorPane layoutX="13.0" layoutY="206.0" prefHeight="255.0" prefWidth="893.0" style="-fx-border-color: black; -fx-border-radius: 15;">
+         <children>
+            <TableView id="productsTable" fx:id="appointmentsTable" layoutX="6.0" layoutY="43.0" prefHeight="205.0" prefWidth="885.0">
+               <columns>
+                  <TableColumn fx:id="appointmentIDColumn" prefWidth="33.0" text="ID" />
+                  <TableColumn fx:id="appointmentTitleColumn" prefWidth="144.0" text="Title" />
+                  <TableColumn fx:id="appointmentDescriptionColumn" prefWidth="187.0" text="Description" />
+                  <TableColumn fx:id="appointmentLocationColumn" prefWidth="108.0" text="Location" />
+                  <TableColumn fx:id="appointmentTypeColumn" prefWidth="109.0" text="Type" />
+                  <TableColumn fx:id="appointmentStartTimeColumn" prefWidth="122.0" text="Start" />
+                  <TableColumn fx:id="appointmentEndTimeColumn" prefWidth="125.0" text="End" />
+                  <TableColumn fx:id="appointmentCustomerIDColumn" prefWidth="55.0" text="Cust. ID" />
+               </columns>
+            </TableView>
+            <Label layoutX="31.0" layoutY="19.0" text="Contact's Appointments">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <Line endX="637.0" layoutX="269.0" layoutY="474.0" startX="-254.0" />
+      <TableView layoutX="295.0" layoutY="486.0" prefHeight="143.0" prefWidth="313.0">
+        <columns>
+          <TableColumn fx:id="regionCountCountryColumn" prefWidth="86.0" text="Country" />
+          <TableColumn fx:id="regionCountRegionNameColumn" prefWidth="148.0" text="Region Name" />
+            <TableColumn fx:id="regionCountCustomersColumn" prefWidth="78.0" text="Customers" />
+        </columns>
+      </TableView>
+   </children>
 </AnchorPane>

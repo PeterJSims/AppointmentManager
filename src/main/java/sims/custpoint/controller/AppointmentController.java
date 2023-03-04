@@ -172,6 +172,10 @@ public class AppointmentController implements Initializable {
         }
     }
 
+    /**
+     * A method to continuously ensure selected appointment times meet both temporal and customer overlap logic.
+     * @param e The combo box the action has come from, either the start time or end time.
+     */
     @FXML
     private void onChangeAppointmentTime(ActionEvent e) {
         errorMessageLabel.setText("");

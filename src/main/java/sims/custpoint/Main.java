@@ -5,7 +5,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import sims.custpoint.dao.DBReport;
 import sims.custpoint.database.JDBC;
+import sims.custpoint.model.DivisionReport;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -27,7 +29,7 @@ public class Main extends Application {
      */
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("main-menu.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("login.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("CustPoint - Customer/Appointment Management");
         stage.setScene(scene);

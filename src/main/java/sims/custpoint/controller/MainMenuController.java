@@ -198,9 +198,9 @@ public class MainMenuController implements Initializable {
         {
             long timeToAppointment = Duration.between(LocalDateTime.now(), x.getStart()).toSeconds();
             if (timeToAppointment > 0 && timeToAppointment < SECONDS_FOR_ALERT) {
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm dd-MM-yyyy");
                 fifteenMinuteLabel.setText("The following appointment is within 15 minutes:");
-                pendingAppointmentLabel.setText("Appointment ID: " + x.getAppointmentID() + " | Start: " + x.getStart().format(formatter));
+                pendingAppointmentLabel.setText("Appointment ID: " + x.getAppointmentID() + " | User ID: " + x.getUserID() + "  | Start Time: " + x.getStart().format(formatter));
                 return true;
             }
             fifteenMinuteLabel.setText("No appointments within the next 15 minutes.");
