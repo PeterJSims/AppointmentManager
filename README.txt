@@ -12,17 +12,13 @@ JavaFX Version: 17.0.2 (javafx-base:17.0.2)
 To run the program:
   - Starter DB files have been provides in the DBStarterFiles directory.
   - Ensure you have the above versions of the Java SDK and JavaFX installed
-  - Run the Main class found at 'src/main/java/sims/custpoint/Main.java' (if need be, specifically run the main() method in the class)
+  - Run the Main class found at 'src/main/java/sims/custpoint/Main.java' 
   - The following users are available for the application:
                 #1 username: test  / password: test
                 #2 username: admin / password: admin
   - Upon logging in, all functionality will be available. Customers and appointments are able to be deleted from the
     main menu, and clicking "Add" or "Modify" under each of their respective displays will take you to their own view.
 
-Additional Reporting:
-  - Besides being able to see what type of events happen for a given month and viewing a selected contact's schedule,
-    the user is able to see how many customers reside in each district. If one or more lives in a first-level district,
-    you will be able to view the country name, district name, and the count of customers residing there.
 
 MySQL Driver used:
   - mysql-connector-java-8.0.26
