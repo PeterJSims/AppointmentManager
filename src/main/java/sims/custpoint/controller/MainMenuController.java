@@ -189,7 +189,7 @@ public class MainMenuController implements Initializable {
      * <p>
      * Iterates through a provided ObservableList of appointments and determines if any are within the next fifteen minutes. If so, relevant appointment information will be displayed on the screen. And if not, the user will be aware there are no pending appointments.
      *
-     * @param appointments
+     * @param appointments The appointments that will be searched through in order to identify a matching item (or not).
      */
     @FXML
     private void displayPendingAppointment(ObservableList<Appointment> appointments) {

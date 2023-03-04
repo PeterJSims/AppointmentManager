@@ -1,0 +1,6 @@
+module:sims.custpoint
+sims.custpoint
+sims.custpoint.controller
+sims.custpoint.dao
+sims.custpoint.database
+sims.custpoint.model

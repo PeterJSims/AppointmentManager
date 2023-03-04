@@ -72,6 +72,7 @@ public class DBCustomers {
     /**
      * Returns an ObservableList-type list of Customers queried from the database based upon a provided name. Holds all customer IDs, names, addresses, postal codes, phone numbers, and division IDs.
      *
+     * @param name The name property by which customers will be found.
      * @return An ObservableList-type list of Customer objects with a matching name field.
      */
     public static ObservableList<Customer> getCustomerByName(String name) {
@@ -95,6 +96,7 @@ public class DBCustomers {
     /**
      * Returns an ObservableList-type list of Customers queried from the database based upon a provided ID. Holds all customer IDs, names, addresses, postal codes, phone numbers, and division IDs.
      *
+     * @param id The ID property by which customers will be found.
      * @return An ObservableList-type list of Customer objects with a matching ID field.
      */
     public static ObservableList<Customer> getCustomerByID(int id) {

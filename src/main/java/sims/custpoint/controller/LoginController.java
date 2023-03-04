@@ -36,7 +36,7 @@ public class LoginController implements Initializable {
     /**
      * A method that will determine if all fields are filled out, and if so it will query the database to see if a matching user can be found. If there is one, the user will be sent to the main menu, otherwise an error will display. Lastly it will call a method to log the attempt in a local text file.
      *
-     * @param e
+     * @param e The button click event on the Submit button.
      */
     @FXML
     public void onClickSubmit(ActionEvent e)  {

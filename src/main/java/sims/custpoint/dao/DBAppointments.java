@@ -82,6 +82,7 @@ public class DBAppointments {
     /**
      * Returns an ObservableList-type list of appointments queried from the database based upon a provided title.
      *
+     * @param title The title property that all appointments will be checked against.
      * @return An ObservableList-type list of Appointment objects with a matching title field.
      */
     public static ObservableList<Appointment> getAppointmentByTitle(String title) {
@@ -105,6 +106,7 @@ public class DBAppointments {
     /**
      * Returns an ObservableList-type list of Appointments queried from the database based upon a provided ID.
      *
+     * @param id The ID property that appointments will be checked against.
      * @return An ObservableList-type list of Customer objects with a matching ID field.
      */
     public static ObservableList<Appointment> getAppointmentByID(int id) {
@@ -191,7 +193,6 @@ public class DBAppointments {
      * Remove a specific appointment from the Appointments database based on the provided ID.
      *
      * @param appointmentID the ID of the appointment to be removed from the Appointments database.
-     * @return A boolean representing a successful deletion of an appointment from the database.
      */
     public static void deleteAppointment(int appointmentID) {
         try {
