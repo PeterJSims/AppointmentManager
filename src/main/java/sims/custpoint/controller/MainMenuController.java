@@ -49,7 +49,6 @@ public class MainMenuController implements Initializable {
 
 
     /**
-     * LAMBDA: The filtering by month and week provided a chance to much more easily create a date checking system. The month allowed for a simple (though slightly long) one liner to filter out unnecessary items, where the week allowed for a statement within the lambda to filter out unnecessary items.
      * A method that handles the radio buttons allowing users to pick if they view all appointments, the appointments this week, or the appointments this month. Instead of using more DB calls, this will simply filter out what is shown based on a Java stream.
      * The month filter selects for the current calendar month and the week filter selects the current day and stops at the end of the week thereafter (i.e. Mon-Sun, Wed-Tues).
      */
@@ -153,7 +152,6 @@ public class MainMenuController implements Initializable {
 
 
     /**
-     * LAMBDA FUNCTION: the ifPresent() method on the Alert class takes a function as an argument, allowing for a lambda expression to be passed in. This can avoid an extra, unnecessary layer of functional decomposition by creating an anonymous function to be run on its value.
      * Allows a user to shut down the CustPoint management system.
      */
     @FXML
@@ -185,8 +183,6 @@ public class MainMenuController implements Initializable {
     }
 
     /**
-     * LAMBDA: A cleaner approach to the normal for loop was presented by the anyMatch method. This allowed me to create a stream and iterate through the list until a match is found (or not) and alter the display accordingly. The simple .stream().anyMatch() previously would have required more code than those two methods.
-     * <p>
      * Iterates through a provided ObservableList of appointments and determines if any are within the next fifteen minutes. If so, relevant appointment information will be displayed on the screen. And if not, the user will be aware there are no pending appointments.
      *
      * @param appointments The appointments that will be searched through in order to identify a matching item (or not).

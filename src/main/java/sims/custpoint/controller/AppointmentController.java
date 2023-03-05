@@ -144,7 +144,6 @@ public class AppointmentController implements Initializable {
     }
 
     /**
-     * LAMBDA: Instead of creating a for-each loop to select the combo boxes for the modified items values, I was able to run a filtered stream and set it to the first (and only) item returned..
      * Sets the starting fields and labels for the screen depending on if the action is to be adding or updating an appointment.
      */
     @FXML

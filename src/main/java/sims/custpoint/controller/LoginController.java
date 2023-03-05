@@ -74,7 +74,6 @@ public class LoginController implements Initializable {
     }
 
     /**
-     * LAMBDA FUNCTION: the ifPresent() method on the Alert class takes a function as an argument, allowing for a lambda expression to be passed in. This can avoid an extra, unnecessary layer of functional decomposition by creating an anonymous function to be run on its value.
      * Allows a user to shut down the Scheduling application. The text's language is set by their location.
      */
     @FXML

@@ -59,8 +59,6 @@ public class CustomerController implements Initializable {
     }
 
     /**
-     * LAMBDA: Instead of making iterative loops through the Divisions and Countries to find matching items, I could simply run a filter on a stream and get the first item returned.
-     * LAMBDA: Further, instead of creating a for-each loop to populate the Divisions combobox with correct divisions, I was able to run a filtered stream and just bring it back to a list via toList.
      * Sets the starting fields and labels for the screen depending on if the action is to be adding or updating a customer.
      */
     @FXML
