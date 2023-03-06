@@ -1,14 +1,6 @@
 --JavaFX project--
 CustPoint - an application providing the ability to manage and create customers and appointments for your scheduling needs.
 
-Author: Peter Sims
-Application Version: 1.0
-Date: 3/3/2023
-
-IDE: IntelliJ IDEA Community Edition 2021.1.3
-Java JDK/Version: Java SE 17.0.1 (jdk-17.0.1)
-JavaFX Version: 17.0.2 (javafx-base:17.0.2)
-
 To run the program:
   - Starter DB files have been provides in the DBStarterFiles directory.
   - Ensure you have the above versions of the Java SDK and JavaFX installed
